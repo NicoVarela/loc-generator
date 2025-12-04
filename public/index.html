@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Locução</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #f0f4ff, #2d3335);
+      color: #1a1a1a;
+      font-size: 18px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3e1212, #253613, #feca57);
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      border-bottom: 4px solid rgba(0,0,0,0.15);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 25px;
+      background: #b5b9bd;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 28px;
+      font-weight: 700;
+      color: #d9eade;
+      background: linear-gradient(90deg, #4f5452, #1f2931);
+      padding: 12px 20px;
+      border-radius: 10px;
+    }
+
+     #text-audio {
+      margin-bottom: 55px;
+      padding: 25px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f2f1de, #70663e);
+      border: 1px solid #c6ddff;
+    }
+
+     #audio-audio {
+      margin-bottom: 55px;
+      padding: 25px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #b2cdea, #1a5284);
+      border: 1px solid #c6ddff;
+    }
+
+    textarea {
+      width: 95%;
+      height: 180px;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #95b8ff;
+      font-size: 18px;
+      resize: vertical;
+      background: #e4e0e0;
+      transition: 0.2s;
+    }
+
+    textarea:focus {
+      border-color: #4a90ff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(74,144,255,0.5);
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #003b70;
+      font-size: 20px;
+    }
+
+    select, input[type="range"] {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid #96a8da;
+      font-size: 18px;
+      background: #fff;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 16px 26px;
+      background: linear-gradient(135deg, #270701, #511c13);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #0062cc, #00a6dd);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.25);
+    }
+
+    .audio-player {
+      margin-top: 20px;
+    }
+
+    .drop-area {
+      border: 3px dashed #7a9cff;
+      border-radius: 16px;
+      padding: 45px;
+      text-align: center;
+      margin-top: 20px;
+      color: #3b4f7a;
+      background: linear-gradient(180deg, #f3f7ff, #7a7f86);
+      transition: 0.3s;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .drop-area.dragover {
+      border-color: #1a73e8;
+      background: #dce9ff;
+      color: #003b70;
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+
+<header>Gerador de Locução</header>
+
+<div class="container">
+
+  <!-- TEXTO PARA ÁUDIO -->
+  <div class="section" id="text-audio">
+    <h2>Texto para Áudio</h2>
+
+    <label for="texto">Texto da Locução:</label>
+    <textarea id="texto" placeholder="Digite aqui o texto da locução..."></textarea>
+
+    <label for="voz1">Escolha a Voz:</label>
+    <select id="voz1">
+      <option value="7C8taav35AVlsZfFXOUj">01 Mario voz mais plana </option>
+      <option value="yGy0GRf4dyPj0xNWDwYK">02 Mario estilo BB</option>
+      <option value="xMzL6MDUH6ZipUbX1Mwh">03 Brasil 30 anos feminino 01</option>
+      <option value="KW4Y1SztJweImFVZMLU9">04 Brasil 30 anos masculino suave</option>
+      <option value="L4JFpIsoZzVr2rEdLGWJ">05 Brasil 35 feminino , mais seca e forte</option>
+      <option value="repzAAjoKlgcT2oOAIWt">06 Voz masculina grave suave</option>
+      <option value="f4mFaKN33HHcpbOTIW6a">07 grave profissional</option>
+      <option value="pxTQHz35eIr09spjSMYI">08 feminino profissional</option>
+      <option value="tf7hqnlue5LbgkzfzyBZ">09 Voz feminina jovem 30 anos atriz</option>
+      <option value="rqZT2hYdrZUpHARU4zQc">10 Voz menina atriz 20 anos</option>
+      <option value="ssgM926Ga3rZOwkdB0qh">11 Voz jovem firme 30 anos</option>
+    </select>
+
+    <!-- <label for="estabilidade1">Estabilidade:</label>
+    <input type="range" id="estabilidade1" min="0" max="100" value="50" />
+
+    <label for="estilo1">Estilo:</label>
+    <input type="range" id="estilo1" min="0" max="100" value="50" /> -->
+
+    <button class="btn">Gerar Locução</button>
+
+    <div class="audio-player">
+      <audio controls id="player1"></audio>
+    </div>
+  </div>
+
+  <!-- ÁUDIO PARA ÁUDIO -->
+  <div class="section" id="audio-audio">
+    <h2>Áudio para Áudio</h2>
+
+    <label>Arraste um arquivo de áudio para cá:</label>
+    <div class="drop-area" id="dropArea">Solte o arquivo aqui</div>
+
+    <label for="voz2">Escolha a Voz:</label>
+    <select id="voz2">
+      <option value="7C8taav35AVlsZfFXOUj">01 Mario voz mais plana </option>
+      <option value="xMzL6MDUH6ZipUbX1Mwh">02 Brasil 30 anos feminino 01</option>
+      <option value="Me8bQdjJNuNechqFBEPz">03 Voz tipo fm, jovem masculina</option>
+      <option value="KW4Y1SztJweImFVZMLU9">04 Brasil 30 anos masculino suave</option>
+      <option value="L4JFpIsoZzVr2rEdLGWJ">05 Brasil 35 feminino , mais seca e forte</option>
+      <option value="repzAAjoKlgcT2oOAIWt">06 Voz masculina grave suave</option>
+      <option value="f4mFaKN33HHcpbOTIW6a">07 grave profissional</option>
+      <option value="pxTQHz35eIr09spjSMYI">08 feminino profissional</option>
+      <option value="tf7hqnlue5LbgkzfzyBZ">09 Voz feminina jovem 30 anos atriz</option>
+      <option value="rqZT2hYdrZUpHARU4zQc">10 Voz menina atriz 20 anos</option>
+      <option value="ssgM926Ga3rZOwkdB0qh">11 Voz jovem firme 30 anos</option>
+    
+    </select>
+
+    <button class="btn">Gerar Nova Locução</button>
+
+    <div class="audio-player">
+      <audio controls id="player2"></audio>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Efeito visual drag & drop
+  // dropArea = document.getElementById('dropArea');
+
+  // dropArea.addEventListener('dragover', (e) => {
+  //   e.preventDefault();
+  //   dropArea.classList.add('dragover');
+  // });
+
+  // dropArea.addEventListener('dragleave', () => {
+  //   dropArea.classList.remove('dragover');
+  // });
+
+  // dropArea.addEventListener('drop', (e) => {
+  //   e.preventDefault();
+  //   dropArea.classList.remove('dragover');
+
+  //   const file = e.dataTransfer.files[0];
+  //   dropArea.textContent = `Arquivo carregado: ${file.name}`;
+  //   // Aqui depois você fará o envio para o backend
+  // });
+
+ 
+  // ================================
+  //       TEXTO → ÁUDIO
+  // ================================
+  const btnTexto = document.querySelectorAll('.btn')[0];
+  const player1 = document.getElementById('player1');
+
+  btnTexto.addEventListener('click', async () => {
+    const text = document.getElementById('texto').value.trim();
+    const voice = document.getElementById('voz1').value;
+    // const estabilidade = Number(document.getElementById('estabilidade1').value) / 100;
+    // const estilo = Number(document.getElementById('estilo1').value) / 100;
+
+    if (!text) {
+      alert("Digite um texto!");
+      return;
+    }
+
+    btnTexto.disabled = true;
+    btnTexto.textContent = "Gerando...";
+
+    try {
+      const response = await fetch('/api/generateAudio', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text,
+          voice,
+          // stability: estabilidade,
+          similarity: 0.75,
+          // style: estilo
+        })
+      });
+
+      const data = await response.json();
+      if (!data.ok) {
+        alert("Erro: " + data.error);
+        return;
+      }
+      
+      player1.src = data.audioUrl;
+      player1.play();
+
+    } catch (err) {
+      alert("Erro no servidor.");
+      console.error(err);
+    }
+
+    btnTexto.disabled = false;
+    btnTexto.textContent = "Gerar Locução";
+  });
+
+
+
+  // ================================
+  //       ÁUDIO → ÁUDIO
+  // ================================
+  let audioFile = null;
+  const dropArea = document.getElementById('dropArea');
+  const btnAudio = document.querySelectorAll('.btn')[1];
+  const player2 = document.getElementById('player2');
+
+  dropArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropArea.classList.add('dragover');
+  });
+
+  dropArea.addEventListener('dragleave', () => {
+    dropArea.classList.remove('dragover');
+  });
+
+  dropArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropArea.classList.remove('dragover');
+
+    audioFile = e.dataTransfer.files[0];
+    dropArea.textContent = `Arquivo carregado: ${audioFile.name}`;
+  });
+
+
+  btnAudio.addEventListener('click', async () => {
+    if (!audioFile) {
+      alert("Arraste um arquivo de áudio primeiro!");
+      return;
+    }
+
+    const voice = document.getElementById('voz2').value;
+
+    const formData = new FormData();
+    formData.append("audio", audioFile);
+    formData.append("voice", voice);
+
+    btnAudio.disabled = true;
+    btnAudio.textContent = "Gerando...";
+
+    try {
+      const response = await fetch('/api/speech-to-speech', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      if (!data.ok) {
+        alert("Erro: " + data.error);
+        return;
+      }
+
+      player2.src = data.audioUrl;
+      player2.play();
+
+    } catch (err) {
+      alert("Erro ao enviar arquivo.");
+      console.error(err);
+    }
+
+    btnAudio.disabled = false;
+    btnAudio.textContent = "Gerar Nova Locução";
+  });
+
+
+</script>
+
+
+
+</body>
+</html>
